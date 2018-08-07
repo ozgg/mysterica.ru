@@ -6,4 +6,6 @@ Rails.application.configure do
   config.i18n.default_locale = :ru
   
   config.exceptions_app = self.routes
+
+  config.post_index_name = 'mysterica_post'
 end

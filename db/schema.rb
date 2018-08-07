@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_07_213942) do
+ActiveRecord::Schema.define(version: 2018_08_07_215244) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -117,6 +117,28 @@ ActiveRecord::Schema.define(version: 2018_08_07_213942) do
     t.string "description", default: "", null: false
     t.text "body", default: "", null: false
     t.index ["language_id"], name: "index_editable_pages_on_language_id"
+  end
+
+  create_table "editorial_members", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.boolean "visible", default: true, null: false
+    t.integer "priority", limit: 2, default: 1, null: false
+    t.string "title"
+    t.text "lead"
+    t.text "about"
+    t.index ["user_id"], name: "index_editorial_members_on_user_id"
+  end
+
+  create_table "featured_posts", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "language_id", null: false
+    t.bigint "post_id", null: false
+    t.integer "priority", limit: 2, default: 1, null: false
+    t.index ["language_id"], name: "index_featured_posts_on_language_id"
+    t.index ["post_id"], name: "index_featured_posts_on_post_id"
   end
 
   create_table "feedback_requests", force: :cascade do |t|
@@ -268,6 +290,173 @@ ActiveRecord::Schema.define(version: 2018_08_07_213942) do
     t.string "description", default: "", null: false
   end
 
+  create_table "post_categories", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "post_type_id", null: false
+    t.integer "parent_id"
+    t.integer "priority", limit: 2, default: 1, null: false
+    t.integer "posts_count", default: 0, null: false
+    t.boolean "locked", default: false, null: false
+    t.boolean "visible", default: true, null: false
+    t.boolean "deleted", default: false, null: false
+    t.string "name", null: false
+    t.string "slug", null: false
+    t.string "long_slug", null: false
+    t.string "parents_cache", default: "", null: false
+    t.integer "children_cache", default: [], null: false, array: true
+    t.index ["post_type_id"], name: "index_post_categories_on_post_type_id"
+  end
+
+  create_table "post_images", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "post_id", null: false
+    t.boolean "visible", default: true, null: false
+    t.integer "priority", limit: 2, default: 1, null: false
+    t.string "image"
+    t.string "image_alt_text"
+    t.string "caption"
+    t.string "owner_name"
+    t.string "owner_link"
+    t.text "description"
+    t.index ["post_id"], name: "index_post_images_on_post_id"
+  end
+
+  create_table "post_links", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "post_id", null: false
+    t.integer "other_post_id", null: false
+    t.integer "priority", limit: 2, default: 1, null: false
+    t.index ["post_id"], name: "index_post_links_on_post_id"
+  end
+
+  create_table "post_notes", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "post_id", null: false
+    t.integer "priority", limit: 2, default: 1, null: false
+    t.text "text", null: false
+    t.index ["post_id"], name: "index_post_notes_on_post_id"
+  end
+
+  create_table "post_post_tags", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "post_id", null: false
+    t.bigint "post_tag_id", null: false
+    t.index ["post_id"], name: "index_post_post_tags_on_post_id"
+    t.index ["post_tag_id"], name: "index_post_post_tags_on_post_tag_id"
+  end
+
+  create_table "post_references", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "post_id", null: false
+    t.integer "priority", limit: 2, default: 1, null: false
+    t.string "authors"
+    t.string "title", null: false
+    t.string "url"
+    t.string "publishing_info"
+    t.index ["post_id"], name: "index_post_references_on_post_id"
+  end
+
+  create_table "post_tags", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "post_type_id", null: false
+    t.integer "posts_count", default: 0, null: false
+    t.string "name"
+    t.string "slug"
+    t.index ["post_type_id"], name: "index_post_tags_on_post_type_id"
+    t.index ["slug"], name: "index_post_tags_on_slug"
+  end
+
+  create_table "post_translations", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "post_id", null: false
+    t.bigint "language_id", null: false
+    t.integer "translated_post_id", null: false
+    t.index ["language_id"], name: "index_post_translations_on_language_id"
+    t.index ["post_id"], name: "index_post_translations_on_post_id"
+  end
+
+  create_table "post_types", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "active", default: true, null: false
+    t.integer "posts_count", default: 0, null: false
+    t.integer "category_depth", limit: 2, default: 0
+    t.string "name", null: false
+    t.string "slug", null: false
+    t.string "default_category_name"
+    t.index ["name"], name: "index_post_types_on_name", unique: true
+    t.index ["slug"], name: "index_post_types_on_slug", unique: true
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.bigint "post_type_id", null: false
+    t.bigint "post_category_id"
+    t.bigint "language_id"
+    t.integer "region_id"
+    t.integer "original_post_id"
+    t.bigint "agent_id"
+    t.inet "ip"
+    t.boolean "visible", default: true, null: false
+    t.boolean "locked", default: false, null: false
+    t.boolean "deleted", default: false, null: false
+    t.boolean "approved", default: true, null: false
+    t.boolean "show_owner", default: true, null: false
+    t.boolean "allow_comments", default: true, null: false
+    t.boolean "allow_votes", default: true, null: false
+    t.boolean "translation", default: false, null: false
+    t.float "rating", default: 0.0, null: false
+    t.integer "privacy", limit: 2, default: 0
+    t.integer "comments_count", default: 0, null: false
+    t.integer "view_count", default: 0, null: false
+    t.integer "upvote_count", default: 0, null: false
+    t.integer "downvote_count", default: 0, null: false
+    t.integer "vote_result", default: 0, null: false
+    t.integer "time_required", limit: 2
+    t.datetime "publication_time"
+    t.string "uuid", null: false
+    t.string "title", null: false
+    t.string "slug", null: false
+    t.string "image"
+    t.string "image_alt_text"
+    t.string "image_name"
+    t.string "image_author_name"
+    t.string "image_author_link"
+    t.string "original_title"
+    t.string "source_name"
+    t.string "source_link"
+    t.string "meta_title"
+    t.string "meta_keywords"
+    t.string "meta_description"
+    t.string "author_name"
+    t.string "author_title"
+    t.string "author_url"
+    t.string "translator_name"
+    t.text "lead"
+    t.text "body", null: false
+    t.text "parsed_body"
+    t.string "tags_cache", default: [], null: false, array: true
+    t.index "date_trunc('month'::text, created_at), post_type_id, user_id", name: "posts_created_at_month_idx"
+    t.index "date_trunc('month'::text, publication_time), post_type_id, user_id", name: "posts_pubdate_month_idx"
+    t.index ["agent_id"], name: "index_posts_on_agent_id"
+    t.index ["created_at"], name: "index_posts_on_created_at"
+    t.index ["language_id"], name: "index_posts_on_language_id"
+    t.index ["post_category_id"], name: "index_posts_on_post_category_id"
+    t.index ["post_type_id"], name: "index_posts_on_post_type_id"
+    t.index ["slug"], name: "index_posts_on_slug"
+    t.index ["user_id"], name: "index_posts_on_user_id"
+  end
+
   create_table "privilege_group_privileges", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -399,6 +588,9 @@ ActiveRecord::Schema.define(version: 2018_08_07_213942) do
   add_foreign_key "codes", "users", on_update: :cascade, on_delete: :cascade
   add_foreign_key "editable_blocks", "languages", on_update: :cascade, on_delete: :cascade
   add_foreign_key "editable_pages", "languages", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "editorial_members", "users", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "featured_posts", "languages", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "featured_posts", "posts", on_update: :cascade, on_delete: :cascade
   add_foreign_key "feedback_requests", "agents", on_update: :cascade, on_delete: :nullify
   add_foreign_key "feedback_requests", "languages", on_update: :cascade, on_delete: :nullify
   add_foreign_key "foreign_users", "agents", on_update: :cascade, on_delete: :nullify
@@ -415,6 +607,25 @@ ActiveRecord::Schema.define(version: 2018_08_07_213942) do
   add_foreign_key "media_folders", "media_folders", column: "parent_id", on_update: :cascade, on_delete: :cascade
   add_foreign_key "media_folders", "users", on_update: :cascade, on_delete: :nullify
   add_foreign_key "metric_values", "metrics", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "post_categories", "post_categories", column: "parent_id", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "post_categories", "post_types", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "post_images", "posts", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "post_links", "posts", column: "other_post_id", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "post_links", "posts", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "post_notes", "posts", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "post_post_tags", "post_tags", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "post_post_tags", "posts", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "post_references", "posts", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "post_tags", "post_types", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "post_translations", "languages", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "post_translations", "posts", column: "translated_post_id", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "post_translations", "posts", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "posts", "agents", on_update: :cascade, on_delete: :nullify
+  add_foreign_key "posts", "languages", on_update: :cascade, on_delete: :nullify
+  add_foreign_key "posts", "post_categories", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "posts", "post_types", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "posts", "posts", column: "original_post_id", on_update: :cascade, on_delete: :nullify
+  add_foreign_key "posts", "users", on_update: :cascade, on_delete: :cascade
   add_foreign_key "privilege_group_privileges", "privilege_groups", on_update: :cascade, on_delete: :cascade
   add_foreign_key "privilege_group_privileges", "privileges", on_update: :cascade, on_delete: :cascade
   add_foreign_key "privileges", "privileges", column: "parent_id", on_update: :cascade, on_delete: :cascade
