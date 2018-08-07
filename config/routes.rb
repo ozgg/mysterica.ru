@@ -1,3 +1,5 @@
 Rails.application.routes.draw do
-  root 'index#index'
+  scope '(:locale)', constraints: { locale: /ru|en/ } do
+    root 'index#index'
+  end
 end
