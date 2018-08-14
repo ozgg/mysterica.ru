@@ -1,6 +1,9 @@
 @import "shared";
 @import "biovision/base/default";
 @import "biovision/base/default_application";
-@import "biovision/base/themes/simple-layout";
+//@import "biovision/base/themes/simple-layout";
 @import "biovision/post/posts";
 @import "layout";
+@import "application/header";
+@import "application/footer";
+@import "application/homepage";

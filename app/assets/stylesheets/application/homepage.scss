@@ -1,0 +1,23 @@
+#homepage {
+  > header {
+    background: $background-secondary-a;
+    padding: var(--spacer-s);
+  }
+
+  h1 {
+    text-align: center;
+  }
+
+  section {
+    padding: var(--spacer-m) var(--spacer-s);
+
+    h2 {
+      font-size: var(--font-size-xl);
+      text-align: center;
+    }
+  }
+}
+
+.index-editable {
+  text-align: justify;
+}

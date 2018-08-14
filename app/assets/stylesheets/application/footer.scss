@@ -1,0 +1,37 @@
+#page-footer {
+  background: $background-footer;
+  box-shadow: -.2rem 0 .2rem $shadow-color;
+  color: $text-color-inverted;
+  flex: none;
+  width: 100%;
+
+  > div {
+    margin: 0 auto;
+    max-width: $content-width;
+    padding: var(--spacer-s) var(--spacer-xs);
+  }
+
+  .copyright {
+    color: $text-color-secondary;
+    font-size: var(--font-size-decreased);
+    padding-top: var(--spacer-s);
+  }
+
+  a:link,
+  a:visited {
+    color: inherit;
+  }
+
+  nav {
+    ul {
+      margin: 0;
+      padding: 0;
+    }
+
+    li {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+  }
+}

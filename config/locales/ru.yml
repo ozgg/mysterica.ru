@@ -8,3 +8,7 @@ ru:
       description: "Новый сайт на движке biovision"
       heading: "Главная страница"
       title: "Мистерика"
+  posts:
+    rss:
+      title: "Мистерика"
+      description: "Мистические практики на практике"

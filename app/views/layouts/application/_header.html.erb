@@ -1,9 +1,15 @@
-<header>
+<header id="page-header">
   <div>
-    <%= render 'layouts/application/header/logo' %>
+    <div class="logo">
+      <%= link_to(image_tag('logo.svg', alt: 'Mysterica'), root_path) %>
+    </div>
     <nav>
-      <%= render 'layouts/application/header/navigation' %>
+      <ul>
+        <% PostCategory.for_tree(2).visible.each do |category| %>
+          <li><%= post_category_link(Post.new(post_type_id: 2, post_category: category)) %></li>
+        <% end %>
+      </ul>
     </nav>
-    <%= render 'layouts/application/header/authentication' %>
+    <%#= render 'layouts/application/header/authentication' %>
   </div>
 </header>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_07_215244) do
+ActiveRecord::Schema.define(version: 2018_08_10_214208) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -396,6 +396,15 @@ ActiveRecord::Schema.define(version: 2018_08_07_215244) do
     t.index ["slug"], name: "index_post_types_on_slug", unique: true
   end
 
+  create_table "post_zen_categories", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "post_id", null: false
+    t.bigint "zen_category_id", null: false
+    t.index ["post_id"], name: "index_post_zen_categories_on_post_id"
+    t.index ["zen_category_id"], name: "index_post_zen_categories_on_zen_category_id"
+  end
+
   create_table "posts", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -446,6 +455,7 @@ ActiveRecord::Schema.define(version: 2018_08_07_215244) do
     t.text "body", null: false
     t.text "parsed_body"
     t.string "tags_cache", default: [], null: false, array: true
+    t.boolean "explicit", default: false, null: false
     t.index "date_trunc('month'::text, created_at), post_type_id, user_id", name: "posts_created_at_month_idx"
     t.index "date_trunc('month'::text, publication_time), post_type_id, user_id", name: "posts_pubdate_month_idx"
     t.index ["agent_id"], name: "index_posts_on_agent_id"
@@ -582,6 +592,14 @@ ActiveRecord::Schema.define(version: 2018_08_07_215244) do
     t.index ["slug"], name: "index_users_on_slug", unique: true
   end
 
+  create_table "zen_categories", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "name", null: false
+    t.integer "posts_count", default: 0, null: false
+    t.index ["name"], name: "index_zen_categories_on_name"
+  end
+
   add_foreign_key "agents", "browsers", on_update: :cascade, on_delete: :cascade
   add_foreign_key "codes", "agents", on_update: :cascade, on_delete: :nullify
   add_foreign_key "codes", "code_types", on_update: :cascade, on_delete: :cascade
@@ -620,6 +638,8 @@ ActiveRecord::Schema.define(version: 2018_08_07_215244) do
   add_foreign_key "post_translations", "languages", on_update: :cascade, on_delete: :cascade
   add_foreign_key "post_translations", "posts", column: "translated_post_id", on_update: :cascade, on_delete: :cascade
   add_foreign_key "post_translations", "posts", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "post_zen_categories", "posts", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "post_zen_categories", "zen_categories", on_update: :cascade, on_delete: :cascade
   add_foreign_key "posts", "agents", on_update: :cascade, on_delete: :nullify
   add_foreign_key "posts", "languages", on_update: :cascade, on_delete: :nullify
   add_foreign_key "posts", "post_categories", on_update: :cascade, on_delete: :cascade

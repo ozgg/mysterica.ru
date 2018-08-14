@@ -1,3 +1,21 @@
 // Здесь можно переобъявлять то, что описано в biovision/base/default,
 // а также добавлять новые общие стили
-@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,700&subset=cyrillic');
+@import url('https://fonts.googleapis.com/css?family=Cormorant+Garamond:400,500,700|Roboto:300,300i,400,400i,500,500i&subset=cyrillic');
+
+$font-family-main: 'Roboto', sans-serif;
+$font-family-heading: 'Cormorant Garamond', serif;
+
+$content-width: 110rem;
+
+$background-body: #fff;
+$background-footer: rgb(40, 40, 40);
+$background-secondary-a: rgb(250, 250, 250);
+
+$text-color-inverted: rgb(250, 250, 250);
+
+$shadow-color: rgba(0, 0, 0, .5);
+
+$link-color: rgb(20, 127, 255);
+$link-color-visited: rgb(20, 77, 250);
+$link-color-hover: rgb(255, 77, 20);
+

@@ -1,0 +1,37 @@
+body {
+  background: $background-body;
+  color: $text-color-primary;
+  display: flex;
+  flex-direction: column;
+  font-size: var(--font-size-normal);
+  font-weight: 300;
+  margin: 0;
+  min-height: 100vh;
+  min-width: $content-width-min;
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  color: $text-color-heading;
+  font-weight: 500;
+}
+
+#main {
+  flex: 1;
+  width: 100%;
+}
+
+article {
+  margin: 0 auto;
+  max-width: $content-width;
+}
+
+.breadcrumbs {
+  background: $background-secondary-a;
+  margin: 0 auto;
+  max-width: $content-width;
+  padding: var(--spacer-xs);
+}

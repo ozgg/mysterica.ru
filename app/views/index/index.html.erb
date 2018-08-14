@@ -1,0 +1,18 @@
+<% if @editable_page.nil? %>
+  <% content_for :meta_title, t('.title') %>
+  <% content_for :meta_title, t('.description') %>
+<% else %>
+  <%= render partial: 'editable_pages/entity/metadata', locals: { entity: @editable_page } %>
+<% end %>
+
+<article id="homepage">
+  <header>
+    <h1><%= @editable_page.title %></h1>
+
+    <div class="index-editable">
+      <%= raw(@editable_page.body) %>
+    </div>
+  </header>
+
+  <%= render 'index/dashboard/biovision_post' %>
+</article>
