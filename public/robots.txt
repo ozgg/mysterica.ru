@@ -1,3 +1,6 @@
+Host: https://mysterica.ru
+Sitemap: https://mysterica.ru/sitemap.xml
+
 User-Agent: *
 Disallow: /admin
 Disallow: /auth

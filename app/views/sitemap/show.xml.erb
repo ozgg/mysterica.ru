@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc><%= root_url %></loc>
+  </url>
+  <url>
+    <loc><%= about_url %></loc>
+  </url>
+  <% Post.list_for_visitors.each do |post| %>
+  <url>
+    <% handler = PostManager.handler(post) %>
+    <loc>https://mysterica.ru<%= handler.post_path %></loc>
+    <lastmod><%= post.updated_at.iso8601 %></lastmod>
+  </url>
+  <% end %>
+</urlset>
