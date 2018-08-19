@@ -35,3 +35,8 @@ article {
   max-width: $content-width;
   padding: var(--spacer-xs);
 }
+
+div.track {
+  margin: var(--spacer-s) auto;
+  max-width: $content-width;
+}

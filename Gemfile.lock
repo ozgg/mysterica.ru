@@ -1,8 +1,8 @@
 GIT
   remote: https://github.com/Biovision/biovision-base.git
-  revision: b498a128e32f071f349aac46100acb92832ffb90
+  revision: 04dd69904a8209003d2f18324e3cd9880976474b
   specs:
-    biovision-base (0.21.180812.0)
+    biovision-base (0.21.180817.0)
       bcrypt (~> 3.1)
       carrierwave (~> 1.2)
       carrierwave-bombshelter (~> 0.2)
@@ -13,9 +13,9 @@ GIT
 
 GIT
   remote: https://github.com/Biovision/biovision-post.git
-  revision: 67686872bc3be912a4e9c33d3f287be810e8573e
+  revision: 03008af8439ee00b83c4f86b909f88f109b1fbe4
   specs:
-    biovision-post (0.11.180815.0)
+    biovision-post (0.11.180820.1)
       biovision-base
       rails (~> 5.1)
       rails-i18n (~> 5.0)
@@ -65,7 +65,7 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
     arel (9.0.0)
-    autoprefixer-rails (9.1.1)
+    autoprefixer-rails (9.1.2)
       execjs
     axiom-types (0.1.1)
       descendants_tracker (~> 0.0.4)
@@ -121,10 +121,10 @@ GEM
     equalizer (0.0.11)
     erubi (1.7.1)
     execjs (2.7.0)
-    factory_bot (4.10.0)
+    factory_bot (4.11.0)
       activesupport (>= 3.0.0)
-    factory_bot_rails (4.10.0)
-      factory_bot (~> 4.10.0)
+    factory_bot_rails (4.11.0)
+      factory_bot (~> 4.11.0)
       railties (>= 3.0.0)
     faraday (0.15.2)
       multipart-post (>= 1.2, < 3)
