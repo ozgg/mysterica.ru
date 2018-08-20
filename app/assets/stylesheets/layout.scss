@@ -17,6 +17,7 @@ h3,
 h4 {
   color: $text-color-heading;
   font-weight: 500;
+  padding: 0 var(--spacer-xs);
 }
 
 #main {
@@ -36,7 +37,61 @@ article {
   padding: var(--spacer-xs);
 }
 
+.editable-page {
+  padding: var(--spacer-xs);
+}
+
 div.track {
   margin: var(--spacer-s) auto;
   max-width: $content-width;
+}
+
+@media screen and(max-width: 720px) {
+  :root {
+    --font-size-increased: 1.7rem;
+    --font-size-large: 2.2rem;
+    --font-size-xl: 2.8rem;
+    --font-size-xxl: 4rem;
+    --font-size-xxxl: 5rem;
+
+    --spacer-s: 1.4rem;
+    --spacer-m: 2.8rem;
+    --spacer-l: 4.2rem;
+    --spacer-xl: 5.6rem;
+    --spacer-xxl: 8rem;
+  }
+}
+
+@media screen and(max-width: 560px) {
+  :root {
+    --spacer-xs: .6rem;
+    --spacer-s: 1.2rem;
+    --spacer-m: 2.4rem;
+    --spacer-l: 3.6rem;
+    --spacer-xl: 4.8rem;
+    --spacer-xxl: 6.4rem;
+  }
+}
+
+@media screen and(max-width: 480px) {
+  :root {
+    --font-size-large: 2rem;
+    --font-size-xl: 2.4rem;
+    --font-size-xxl: 3.6rem;
+    --font-size-xxxl: 4.2rem;
+  }
+}
+
+@media screen and(max-width: 375px) {
+  :root {
+    --font-size-xl: 2.2rem;
+    --font-size-xxl: 3rem;
+    --font-size-xxxl: 3.6rem;
+
+    --spacer-s: 1rem;
+    --spacer-m: 2rem;
+    --spacer-l: 3rem;
+    --spacer-xl: 4rem;
+    --spacer-xxl: 5.6rem;
+  }
 }
