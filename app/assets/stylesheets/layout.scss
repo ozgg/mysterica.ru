@@ -46,6 +46,20 @@ div.track {
   max-width: $content-width;
 }
 
+strong {
+  font-weight: 500;
+}
+
+.ck-content {
+  ul {
+    padding-left: var(--spacer-m);
+
+    li {
+      list-style: disc;
+    }
+  }
+}
+
 @media screen and(max-width: 720px) {
   :root {
     --font-size-increased: 1.7rem;

@@ -1,0 +1,13 @@
+strong {
+  font-weight: 500;
+}
+
+.ck-content {
+  ul {
+    padding-left: var(--spacer-m);
+
+    li {
+      list-style: disc;
+    }
+  }
+}
