@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_10_214208) do
+ActiveRecord::Schema.define(version: 2018_08_25_203952) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -305,6 +305,7 @@ ActiveRecord::Schema.define(version: 2018_08_10_214208) do
     t.string "long_slug", null: false
     t.string "parents_cache", default: "", null: false
     t.integer "children_cache", default: [], null: false, array: true
+    t.string "meta_description"
     t.index ["post_type_id"], name: "index_post_categories_on_post_type_id"
   end
 

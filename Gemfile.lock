@@ -1,8 +1,8 @@
 GIT
   remote: https://github.com/Biovision/biovision-base.git
-  revision: 04dd69904a8209003d2f18324e3cd9880976474b
+  revision: 7a1545aba8c4cb7bc4349c25b084c3a02255e491
   specs:
-    biovision-base (0.21.180817.0)
+    biovision-base (0.21.180829.1)
       bcrypt (~> 3.1)
       carrierwave (~> 1.2)
       carrierwave-bombshelter (~> 0.2)
@@ -13,9 +13,9 @@ GIT
 
 GIT
   remote: https://github.com/Biovision/biovision-post.git
-  revision: 03008af8439ee00b83c4f86b909f88f109b1fbe4
+  revision: 13888ca28ce75c988cbbc77529f6cf5a671c9bc5
   specs:
-    biovision-post (0.11.180820.1)
+    biovision-post (0.12.180831.0)
       biovision-base
       rails (~> 5.1)
       rails-i18n (~> 5.0)
@@ -65,7 +65,7 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
     arel (9.0.0)
-    autoprefixer-rails (9.1.2)
+    autoprefixer-rails (9.1.3)
       execjs
     axiom-types (0.1.1)
       descendants_tracker (~> 0.0.4)
@@ -185,7 +185,7 @@ GEM
     nokogiri (1.8.4)
       mini_portile2 (~> 2.3.0)
     open4 (1.3.4)
-    pg (1.0.0)
+    pg (1.1.2)
     puma (3.12.0)
     rack (2.0.5)
     rack-test (1.1.0)
@@ -322,4 +322,4 @@ RUBY VERSION
    ruby 2.5.1p57
 
 BUNDLED WITH
-   1.16.3
+   1.16.4
