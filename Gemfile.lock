@@ -13,9 +13,9 @@ GIT
 
 GIT
   remote: https://github.com/Biovision/biovision-post.git
-  revision: 13888ca28ce75c988cbbc77529f6cf5a671c9bc5
+  revision: f2db96f452b4d5e7bf89470f80e9fde9723fb756
   specs:
-    biovision-post (0.12.180831.0)
+    biovision-post (0.12.180831.1)
       biovision-base
       rails (~> 5.1)
       rails-i18n (~> 5.0)
@@ -248,7 +248,7 @@ GEM
       rspec-support (~> 3.8.0)
     rspec-support (3.8.0)
     ruby_dep (1.5.0)
-    rubyzip (1.2.1)
+    rubyzip (1.2.2)
     sass (3.5.7)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)

@@ -3,6 +3,8 @@ ru:
   shared:
     meta_texts:
       site_name: "mysterica.ru"
+    popular_posts:
+      heading: "Популярные публикации"
   index:
     index:
       description: "Новый сайт на движке biovision"

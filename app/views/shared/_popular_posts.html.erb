@@ -1,0 +1,22 @@
+<% if collection.any? %>
+  <div class="posts-popular">
+    <h3><%= t('.heading') %></h3>
+    <ul>
+      <% collection.each do |entity| %>
+      <li>
+        <div class="image">
+          <%= post_link(entity, post_image_preview(entity)) %>
+        </div>
+        <div class="text">
+          <div class="title">
+            <%= post_link(entity) %>
+          </div>
+          <div class="lead">
+            <%= entity.lead! %>
+          </div>
+        </div>
+      </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

@@ -9,10 +9,32 @@
   }
 
   section {
-    padding: var(--spacer-m) var(--spacer-s);
+    padding: 0 var(--spacer-s) var(--spacer-m);
 
     h2 {
       font-size: var(--font-size-xl);
+      text-align: center;
+    }
+  }
+
+  .wrapper {
+    display: flex;
+    flex-wrap: wrap;
+
+    section {
+      flex: 1;
+    }
+  }
+
+  .sidebar {
+    background: $background-sidebar;
+    flex: none;
+    width: 30rem;
+    max-width: 100%;
+    padding: var(--spacer-s);
+
+    h3 {
+      line-height: calc(var(--font-size-xl) * 1.1);
       text-align: center;
     }
   }

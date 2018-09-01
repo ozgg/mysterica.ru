@@ -14,5 +14,17 @@
     </div>
   </header>
 
-  <%= render 'index/dashboard/biovision_post' %>
+  <div class="wrapper">
+    <%= render 'index/dashboard/biovision_post' %>
+    <div class="sidebar">
+      <%=
+        render(
+            partial: 'shared/popular_posts',
+            locals:  {
+                collection: Post.popular.list_for_visitors.first(5)
+            }
+        )
+      %>
+    </div>
+  </div>
 </article>
