@@ -29,9 +29,10 @@
   .sidebar {
     background: $background-sidebar;
     flex: none;
-    width: 30rem;
+    margin: 0 auto;
     max-width: 100%;
     padding: var(--spacer-s);
+    width: 30rem;
 
     h3 {
       line-height: calc(var(--font-size-xl) * 1.1);
