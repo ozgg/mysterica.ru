@@ -5,6 +5,8 @@ ru:
       site_name: "mysterica.ru"
     popular_posts:
       heading: "Популярные публикации"
+    donate:
+      heading: "Поддержать проект"
   index:
     index:
       description: "Новый сайт на движке biovision"

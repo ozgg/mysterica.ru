@@ -5,9 +5,8 @@
     </div>
     <nav>
       <ul>
-        <% PostCategory.for_tree(2).visible.each do |category| %>
-          <li><%= post_category_link(Post.new(post_type_id: 2, post_category: category)) %></li>
-        <% end %>
+        <li><%= link_to(t('articles.index.nav_text'), articles_path) %></li>
+        <li><%= link_to(t('about.index.nav_text'), about_path) %></li>
       </ul>
     </nav>
     <%#= render 'layouts/application/header/authentication' %>
